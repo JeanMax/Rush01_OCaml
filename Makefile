@@ -6,7 +6,7 @@
 #    By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/29 13:16:03 by mcanal            #+#    #+#              #
-#    Updated: 2015/11/14 20:24:05 by mcanal           ###   ########.fr        #
+#    Updated: 2015/11/14 22:33:25 by mcanal           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -24,13 +24,10 @@ OPTOBJS = $(SRC:.ml=.cmx)
 TMP = $(OBJS) $(OPTOBJS) $(SRC:.ml=.cmi) $(SRC:.ml=.o)
 DEPS = .depend
 
-LIBS = $(WITHGRAPHICS) $(WITHSTR) $(IMGI)
-WITHGRAPHICS = graphics.cma -cclib -lgraphics
-WITHUNIX = unix.cma -cclib -lunix
-WITHSTR = str.cma -cclib -lstr
-WITHNUMS = nums.cma -cclib -lnums
-WITHTHREADS = threads.cma -cclib -lthreads
-WITHDBM = dbm.cma -cclib -lmldbm -cclib -lndbm
+LIBS = $(WITHGRAPHICS) $(WITHSTR) $(WITHUNIX) $(IMGI) 
+WITHGRAPHICS = graphics.cma
+WITHUNIX = unix.cma
+WITHSTR = str.cma
 
 RM = rm -rf
 MV = mv -f
