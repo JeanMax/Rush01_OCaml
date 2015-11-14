@@ -6,7 +6,7 @@
 (*   By: mcanal <zboub@42.fr>                       +#+  +:+       +#+        *)
 (*                                                +#+#+#+#+#+   +#+           *)
 (*   Created: 2015/11/14 19:19:38 by mcanal            #+#    #+#             *)
-(*   Updated: 2015/11/14 20:36:09 by mcanal           ###   ########.fr       *)
+(*   Updated: 2015/11/14 20:53:25 by mcanal           ###   ########.fr       *)
 (*                                                                            *)
 (* ************************************************************************** *)
 
@@ -33,6 +33,8 @@ object
   method bath = new tama ~hp:(_hp-20) ~mp:(_mp-10) ~hyg:(_hyg+25) ~hap:(_hap+5) ()
   method kill = new tama ~hp:(_hp-20) ~mp:(_mp-10) ~hyg:_hyg ~hap:(_hap+20) ()
 
+  method live = new tama ~hp:(_hp-1) ~mp:(_mp) ~hyg:(_hyg) ~hap:(_hap) ()
+					
   method save =
 	let oc = open_out "save.itama" in
 	Printf.fprintf oc "%d;%d;%d;%d" _hp _mp _hyg _hap;
