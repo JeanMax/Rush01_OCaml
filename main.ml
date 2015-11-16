@@ -6,7 +6,7 @@
 (*   By: mcanal <zboub@42.fr>                       +#+  +:+       +#+        *)
 (*                                                +#+#+#+#+#+   +#+           *)
 (*   Created: 2015/11/14 18:26:06 by mcanal            #+#    #+#             *)
-(*   Updated: 2015/11/14 22:29:10 by mcanal           ###   ########.fr       *)
+(*   Updated: 2015/11/16 00:17:21 by mcanal           ###   ########.fr       *)
 (*                                                                            *)
 (* ************************************************************************** *)
 
@@ -30,10 +30,13 @@ let checkEvent ()=
 	else xy in zboub 1. (0, 0)
 
 			  
-let rec gameloop tama =
+let rec gameloop tama lvl =
   tama#debug;
   let tama = doSomething tama (checkEvent ()) in
-  if tama#is_alive = true then gameloop tama#live else ()
+
+  if lvl != tama#get_lvl then Images.dessiner_image tama#get_img;
+
+  if tama#is_alive = true then gameloop tama#live tama#get_lvl else ()
 
 
 let rec askLoad () =
@@ -47,15 +50,16 @@ let rec askLoad () =
 	| _   -> askLoad ()
 
 
+let rec askPoke () =
+  print_endline "Which pokemon do you want?! (Pika/Sala)";
+  let s = Tama.poke_of_string (read_line ()) in
+  if s = Tama.Fail then askPoke () else s
+
 let () =
+  let tama = if askLoad () = true
+			 then (new Tama.tama Tama.Pika)#load
+			 else (new Tama.tama (askPoke ())) in
+
   Graphics.open_graph "";
-
-  let pika = Images.lire_image "img/pika.png" in
-  Images.dessiner_image pika;
-
-  if askLoad () = true
-  then gameloop (new Tama.tama ())#load
-  else gameloop (new Tama.tama ())
-
-  
-	  
+  gameloop tama 0.;
+  print_endline "GAME OVER"
