@@ -33,10 +33,12 @@ let checkEvent ()=
 let rec gameloop tama lvl =
   tama#debug;
   Draw.display_hp (tama#get_hp);
+  Draw.display_mp (tama#get_mp);
   Draw.display_hyg (tama#get_hyg);
+  Draw.display_hap (tama#get_hap);
   let tama = doSomething tama (checkEvent ()) in
 
-  if lvl != tama#get_lvl then Images.dessiner_image tama#get_img 0 0;
+  if lvl != tama#get_lvl then Images.dessiner_image tama#get_img 166 154;
 
   if tama#is_alive = true then gameloop tama#live tama#get_lvl else ()
 
@@ -63,6 +65,7 @@ let () =
 			 else (new Tama.tama (askPoke ())) in
 
   Graphics.open_graph " 600x600";
+  Draw.init ();
   (* Draw.display_hp 100;
   Draw.display_mp 100;
   Draw.display_hyg 100;
