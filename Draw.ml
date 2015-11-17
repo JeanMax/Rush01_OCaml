@@ -8,18 +8,25 @@ let init () =
 	Graphics.draw_rect 0 499 296 47;
 	Graphics.draw_rect 300 499 296 47;
 	Graphics.set_text_size 82;
-	Graphics.moveto 50 10;
+	Graphics.moveto 50 40;
 	Graphics.draw_string "Eat";
-	Graphics.draw_rect 0 0 296 47;
-	Graphics.moveto 351 10;
+	Graphics.draw_rect 0 30 296 47;
+	Graphics.moveto 351 40;
 	Graphics.draw_string "Thunder";
-	Graphics.draw_rect 301 0 296 47;
-	Graphics.moveto 50 61;
+	Graphics.draw_rect 301 30 296 47;
+	Graphics.moveto 50 91;
 	Graphics.draw_string "Bath";
-	Graphics.draw_rect 0 51 296 47;
-	Graphics.moveto 351 61;
+	Graphics.draw_rect 0 81 296 47;
+	Graphics.moveto 351 91;
 	Graphics.draw_string "Kill";
-	Graphics.draw_rect 301 51 296 47
+	Graphics.draw_rect 301 81 296 47;
+	Graphics.moveto 50 5;
+	Graphics.draw_string "Quit && Save game";
+	Graphics.draw_rect 1 2 296 23;
+	Graphics.moveto 351 5;
+	Graphics.draw_string "Just quit";
+	Graphics.draw_rect 301 2 296 23
+
 
 let display_hp pv =
 	Graphics.set_color 0x000000;
@@ -37,7 +44,7 @@ let display_hp pv =
 	Graphics.fill_rect 3 553 (pv * 290 / 100) 41;
 	Graphics.moveto 50 563;
 	Graphics.set_color 0x000000;
-	Graphics.draw_string "Health"
+	Graphics.draw_string ("Health : " ^ string_of_int pv)
 
 let display_mp pv =
 	Graphics.set_color 0x000000;
@@ -53,7 +60,7 @@ let display_mp pv =
 	Graphics.fill_rect 303 553 (pv * 290 / 100) 41;
 	Graphics.moveto 351 563;
 	Graphics.set_color 0x000000;
-	Graphics.draw_string "Energy"
+	Graphics.draw_string ("Energy : " ^ string_of_int pv)
 
 let display_hyg pv =
 	Graphics.set_color 0x000000;
@@ -69,7 +76,7 @@ let display_hyg pv =
 	Graphics.fill_rect 3 502 (pv * 290 / 100) 41;
 	Graphics.moveto 50 512;
 	Graphics.set_color 0x000000;
-	Graphics.draw_string "Hygiene"
+	Graphics.draw_string ("Hygiene : " ^ string_of_int pv)
 
 let display_hap pv =
 	Graphics.set_color 0x000000;
@@ -85,4 +92,4 @@ let display_hap pv =
 	Graphics.fill_rect 303 502 (pv * 290 / 100) 41;
 	Graphics.moveto 351 512;
 	Graphics.set_color 0x000000;
-	Graphics.draw_string "Happy"
+	Graphics.draw_string ("Happy : " ^ string_of_int pv)

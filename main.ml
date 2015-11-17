@@ -13,10 +13,15 @@
 
 let doSomething tama = function
 	(0, 0) -> tama
-  | (x, y) when x < 10 && y < 10 -> tama#save_exit; tama
+  | (x, y) when x >= 0 && x <= 300 && y >= 0 && y < 30 -> tama#save_exit; tama
+  | (x, y) when x > 300 && x <= 600 && y >= 0 && y < 30 -> exit 2
   (*TODO!*)
+  | (x, y) when x >= 0 && x < 300 && y >= 30 && y <= 80 -> tama#eat
+  | (x, y) when x >= 300 && x < 600 && y >= 30 && y <= 80 -> tama#thunder
+  | (x, y) when x >= 0 && x < 300 && y >= 80 && y <= 130 -> tama#bath
+  | (x, y) when x >= 300 && x < 600 && y >= 80 && y <= 130 -> tama#kill
   | (x, y) -> Printf.printf "click! x:%d y:%d\n" x y; flush stdout;
-  tama#eat
+  tama
 
 
 let checkEvent ()=
@@ -66,10 +71,5 @@ let () =
 
   Graphics.open_graph " 600x600";
   Draw.init ();
-  (* Draw.display_hp 100;
-  Draw.display_mp 100;
-  Draw.display_hyg 100;
-  Draw.display_hap 100;
-  read_line (); *)
   gameloop tama 0.;
   print_endline "GAME OVER"
