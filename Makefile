@@ -6,7 +6,7 @@
 #    By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/29 13:16:03 by mcanal            #+#    #+#              #
-#    Updated: 2015/11/14 22:33:25 by mcanal           ###   ########.fr        #
+#    Updated: 2015/11/17 17:09:46 by mcanal           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -85,6 +85,9 @@ $(IMG):
 	@echo "$(GREEN)curl\t$(WHITE)-> $(IMGI) $(BASIC)"
 	@curl -sO "http://www.fil.univ-lille1.fr/~wegrzyno/portail/API1/Doc/TP/TP-Images/images.ml"
 	@echo "$(GREEN)curl\t$(WHITE)-> $(IMG) $(BASIC)"
+	@sed -ie 's/val dessiner_image : Graphics.color array array -> unit/val dessiner_image : Graphics.color array array -> int -> int -> unit/g' $(IMGI)
+	@sed -ie 's/let dessiner_image img/let dessiner_image img x y/g' $(IMG)
+	@sed -ie 's/draw_image (make_image img) 0 0/draw_image (make_image img) x y/g' $(IMG)
 
 $(IMG:.ml=.cmo): $(IMG)
 	@$(CAMLC) $(CFLAGS) -c $(IMGI)

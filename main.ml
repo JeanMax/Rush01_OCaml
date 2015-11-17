@@ -6,7 +6,7 @@
 (*   By: mcanal <zboub@42.fr>                       +#+  +:+       +#+        *)
 (*                                                +#+#+#+#+#+   +#+           *)
 (*   Created: 2015/11/14 18:26:06 by mcanal            #+#    #+#             *)
-(*   Updated: 2015/11/16 00:17:21 by mcanal           ###   ########.fr       *)
+(*   Updated: 2015/11/17 17:11:29 by mcanal           ###   ########.fr       *)
 (*                                                                            *)
 (* ************************************************************************** *)
 
@@ -36,7 +36,7 @@ let rec gameloop tama lvl =
   Draw.display_hyg (tama#get_hyg);
   let tama = doSomething tama (checkEvent ()) in
 
-  if lvl != tama#get_lvl then Images.dessiner_image tama#get_img;
+  if lvl != tama#get_lvl then Images.dessiner_image tama#get_img 0 0;
 
   if tama#is_alive = true then gameloop tama#live tama#get_lvl else ()
 
