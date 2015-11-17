@@ -6,7 +6,7 @@
 (*   By: mcanal <zboub@42.fr>                       +#+  +:+       +#+        *)
 (*                                                +#+#+#+#+#+   +#+           *)
 (*   Created: 2015/11/14 19:19:38 by mcanal            #+#    #+#             *)
-(*   Updated: 2015/11/17 16:44:11 by mcanal           ###   ########.fr       *)
+(*   Updated: 2015/11/17 18:27:26 by mcanal           ###   ########.fr       *)
 (*                                                                            *)
 (* ************************************************************************** *)
 
@@ -35,10 +35,11 @@ object
 	  (hp,mp,hyg,hap) when hp > 0 && mp > 0 && hyg > 0 && hap > 0 -> true
 	| _ -> false
   val _img = match poke with
-	  Sala -> Images.lire_image "img/sala.png" (*TODO: catch error?*)
-	|  _    -> if lvl < 42.
-			  then Images.lire_image "img/pika.png" (*TODO: catch error?*)
-			  else Images.lire_image "img/pika_evol.png" (*TODO: catch error?*)
+	  Sala  -> if lvl < 7. then Images.lire_image "img/sala.jpg"
+			   else if lvl < 9. then Images.lire_image "img/rept.png"
+			   else Images.lire_image "img/drac.png" (*TODO: catch error?*)
+	|  _    -> if lvl < 7. then Images.lire_image "img/pika.png"
+			   else Images.lire_image "img/raichu.jpg" (*TODO: catch error?*)
 
   method get_hp = _hp
   method get_mp = _mp

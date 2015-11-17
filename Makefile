@@ -6,7 +6,7 @@
 #    By: mcanal <mcanal@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/29 13:16:03 by mcanal            #+#    #+#              #
-#    Updated: 2015/11/17 17:09:46 by mcanal           ###   ########.fr        #
+#    Updated: 2015/11/17 18:12:21 by mcanal           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -102,7 +102,7 @@ $(IMG:.ml=.cmx): $(IMG)
 	@echo "$(WHITE)$(IMG)\t->$(BLUE) $(IMG:.ml=.cmx) $(BASIC)"
 
 clean:
-	@$(RM) $(TMP) $(DEPS) $(IMG) $(IMGI)
+	@$(RM) $(TMP) $(DEPS) $(IMG) $(IMGI) $(IMGI:.mli=.mlie) $(IMG:.ml=.mle)
 
 fclean: clean
 	@$(RM) $(NAME_C)
