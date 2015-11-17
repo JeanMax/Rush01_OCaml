@@ -37,13 +37,14 @@ let checkEvent ()=
 			  
 let rec gameloop tama lvl =
   tama#debug;
+  Draw.display_lvl (tama#get_lvl);
   Draw.display_hp (tama#get_hp);
   Draw.display_mp (tama#get_mp);
   Draw.display_hyg (tama#get_hyg);
   Draw.display_hap (tama#get_hap);
   let tama = doSomething tama (checkEvent ()) in
 
-  if lvl != tama#get_lvl then Images.dessiner_image tama#get_img 166 154;
+  if lvl != tama#get_lvl then begin Graphics.set_color 0xffffff; Graphics.fill_rect 0 172 600 320; Images.dessiner_image tama#get_img 166 174 end;
 
   if tama#is_alive = true then gameloop tama#live tama#get_lvl else ()
 

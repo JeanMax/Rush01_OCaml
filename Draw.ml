@@ -93,3 +93,15 @@ let display_hap pv =
 	Graphics.moveto 351 512;
 	Graphics.set_color 0x000000;
 	Graphics.draw_string ("Happy : " ^ string_of_int pv)
+
+let display_lvl pv =
+	Graphics.set_color 0xffffff;
+	Graphics.fill_rect 1 132 596 30;
+	Graphics.set_color 0x00ffff;
+	let x = (pv -. (float_of_int (int_of_float pv))) *. 587.
+	in
+	Graphics.fill_rect 4 138 (int_of_float x) 18;
+	Graphics.set_color 0x000000;
+	Graphics.draw_rect 1 135 593 24;
+	Graphics.moveto 10 142;
+	Graphics.draw_string ("Level : " ^ string_of_int (int_of_float pv))
