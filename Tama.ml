@@ -6,7 +6,7 @@
 (*   By: mcanal <zboub@42.fr>                       +#+  +:+       +#+        *)
 (*                                                +#+#+#+#+#+   +#+           *)
 (*   Created: 2015/11/14 19:19:38 by mcanal            #+#    #+#             *)
-(*   Updated: 2015/11/16 00:20:20 by mcanal           ###   ########.fr       *)
+(*   Updated: 2015/11/17 16:44:11 by mcanal           ###   ########.fr       *)
 (*                                                                            *)
 (* ************************************************************************** *)
 
@@ -25,10 +25,10 @@ let poke_of_string = function
 class tama ?(stats=(100,100,100,100)) ?(lvl=0.) poke =
 object
 
-  val _hp =  match stats with (hp,_,_,_)  -> hp
-  val _mp =  match stats with (_,mp,_,_)  -> mp
-  val _hyg = match stats with (_,_,hyg,_) -> hyg
-  val _hap = match stats with (_,_,_,hap) -> hap
+  val _hp =  match stats with (hp,_,_,_)  -> if hp > 100 then 100 else hp
+  val _mp =  match stats with (_,mp,_,_)  -> if mp > 100 then 100 else mp
+  val _hyg = match stats with (_,_,hyg,_) -> if hyg > 100 then 100 else hyg
+  val _hap = match stats with (_,_,_,hap) -> if hap > 100 then 100 else hap
   val _lvl = lvl
   val _poke = poke
   val _is_alive = match stats with 
