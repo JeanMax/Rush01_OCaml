@@ -6,7 +6,7 @@
 (*   By: mcanal <zboub@42.fr>                       +#+  +:+       +#+        *)
 (*                                                +#+#+#+#+#+   +#+           *)
 (*   Created: 2015/11/14 19:19:38 by mcanal            #+#    #+#             *)
-(*   Updated: 2015/11/17 18:27:26 by mcanal           ###   ########.fr       *)
+(*   Updated: 2015/11/18 17:34:19 by mcanal           ###   ########.fr       *)
 (*                                                                            *)
 (* ************************************************************************** *)
 
@@ -22,6 +22,10 @@ let poke_of_string = function
   | "Sala" | "sala" | "SALA" -> print_endline "SALA SALA!!"; Sala
   | _ -> Fail
 
+let default_img = try Images.lire_image "img/pika.png"
+				  with _ -> print_endline "Image files not found.";
+							exit (-1)
+
 class tama ?(stats=(100,100,100,100)) ?(lvl=0.) poke =
 object
 
@@ -31,15 +35,22 @@ object
   val _hap = match stats with (_,_,_,hap) -> if hap > 100 then 100 else hap
   val _lvl = lvl
   val _poke = poke
-  val _is_alive = match stats with 
+  val _is_alive = 
+	match stats with 
 	  (hp,mp,hyg,hap) when hp > 0 && mp > 0 && hyg > 0 && hap > 0 -> true
 	| _ -> false
-  val _img = match poke with
-	  Sala  -> if lvl < 7. then Images.lire_image "img/sala.jpg"
-			   else if lvl < 9. then Images.lire_image "img/rept.png"
-			   else Images.lire_image "img/drac.png" (*TODO: catch error?*)
-	|  _    -> if lvl < 7. then Images.lire_image "img/pika.png"
-			   else Images.lire_image "img/raichu.jpg" (*TODO: catch error?*)
+  val _img = 
+	try 
+	  begin
+		match poke with	
+		  Sala  -> if lvl < 7. then Images.lire_image "img/sala.png"
+				   else if lvl < 13. then Images.lire_image "img/rept.png"
+				   else Images.lire_image "img/drac.png"
+		| Pika  -> if lvl < 4. then Images.lire_image "img/pika.png"
+				   else Images.lire_image "img/raichu.png"
+		| Fail  -> default_img
+	  end
+	with _ -> default_img
 
   method get_hp = _hp
   method get_mp = _mp
